@@ -4,24 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Practica_js</title>
-
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
 
+<body>
 
-<body class="cuerpo">
-    <h1>Hello Wordl</h1>
-
-    <div>
-        <img src="images/temp.jpg" alt="temp" class="temper">
+    <button id="iniciarBtn" class="centro">Iniciar Convertidor</button>
+    <div id="contenedor" style="display: none;" class="centro">
+        <p id="saludo">¡Bienvenido al convertidor de temperaturas!</p>
+        <p id="instrucciones"></p>
+        <input type="number" id="fahrenheitInput" placeholder="Ingresa el valor en grados Fahrenheit">
+        <button id="convertirBtn">Convertir</button>
+        <p id="resultado"></p>
+        <button id="nuevaConversionBtn" style="display: none;">Convertir otro valor</button>
+        <p id="maxMinPregunta"></p>
+        <button id="maxBtn" style="display: none;">Valor Máximo</button>
+        <button id="minBtn" style="display: none;">Valor Mínimo</button>
     </div>
+    <ul id="historialLista" class="centro"></ul>
 
-
-
-
-
-
+    
     <script src="index.js"></script>
+
 </body>
 </html>

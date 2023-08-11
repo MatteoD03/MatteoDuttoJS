@@ -21,18 +21,31 @@ a{
 
 /* -------------- index -------------- */
 
-.cuerpo{
-    background-color: rgb(219, 216, 216);
-    h1{
-        display: flex;
-        justify-content: center;
-        margin-top: 3rem;
-    }
+.centro {
+    margin-top: 2rem;
+    text-align: center;
 }
 
-.temper{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+button, p, input {
+    margin-bottom: 1rem;
 }
+
+button {
+    cursor: pointer;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70rem;
+    flex-direction: column;
+}
+
+.contenedor {
+    text-align: center;
+    padding: 2rem;
+}
+
+
+
