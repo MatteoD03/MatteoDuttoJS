@@ -23,25 +23,63 @@ a {
   text-align: center;
 }
 
-button, p, input {
-  margin-bottom: 1rem;
-}
-
 button {
   cursor: pointer;
+  margin: 1.5rem;
+  appearance: none;
+  background: none;
+  background-color: #FFF;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  border: none;
+  outline: none;
+  margin-bottom: 1rem;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: rgba(221, 221, 221, 0.9);
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70rem;
+  height: auto;
   flex-direction: column;
+  background-color: rgb(156, 59, 59);
 }
 
-.contenedor {
-  text-align: center;
-  padding: 2rem;
+input {
+  margin: 1.5rem;
+  appearance: none;
+  background: none;
+  background-color: #FFF;
+  border-radius: 0.8rem;
+  padding: 1.5rem;
+  border: none;
+  outline: none;
+  margin-bottom: 1rem;
+}
+input:focus {
+  box-shadow: 0rem 0rem 0.6rem 0.1rem rgba(0, 0, 0, 0.2);
+}
+
+p {
+  font-size: 1.8rem;
+  margin: 1rem;
+}
+
+li {
+  font-size: 1.3rem;
+  list-style: none;
+}
+
+h1 {
+  margin: 8rem;
+}
+
+div {
+  margin-bottom: 2rem;
 }
 
 /*# sourceMappingURL=styles.css.map */

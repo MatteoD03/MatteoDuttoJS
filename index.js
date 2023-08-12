@@ -16,21 +16,26 @@ function ocultarElemento(id) {
     document.getElementById(id).style.display = "none";
 }
 
-const saludo = document.getElementById("saludo");
+const listo = document.getElementById("listo");
 const iniciarBtn = document.getElementById("iniciarBtn");
 const contenedor = document.getElementById("contenedor");
 const maxBtn = document.getElementById("maxBtn");
 const minBtn = document.getElementById("minBtn");
 const historialLista = document.getElementById("historialLista");
+const buscarInput = document.getElementById("buscarInput");
+const buscarBtn = document.getElementById("buscarBtn");
+const limpiarBusquedaBtn = document.getElementById("limpiarBusquedaBtn");
+const saludo = document.getElementById("saludo");
 
 let temperaturasConvertidas = []; //guarda las temp convertidas a °C
 
 //listener btn iniciar
 iniciarBtn.addEventListener("click", function() {
-    saludo.style.display = "none";
+    listo.style.display = "block";
     iniciarBtn.style.display = "none";
     contenedor.style.display = "block";
     instrucciones.textContent = "Ingresa el valor en grados Fahrenheit:";
+    saludo.style.display = "none"
 });
 
 //listener btn convertidor
@@ -57,6 +62,7 @@ convertirBtn.addEventListener("click", function() {
         if (temperaturasConvertidas.length >= 1) {
             mostrarElemento("maxBtn");
             mostrarElemento("minBtn");
+            mostrarElemento("historial");
         }
         fahrenheitInput.value ="";
     } else {
@@ -73,6 +79,43 @@ nuevaConversionBtn.addEventListener("click", function() {
     ocultarElemento("maxBtn");
     ocultarElemento("minBtn");
 });
+
+//listener de buscar en historial
+buscarBtn.addEventListener("click", function() {
+    const searchTerm = buscarInput.value.toLowerCase();
+    filtrarHistorial(searchTerm);
+});
+
+//listener que limpia la busqueda
+limpiarBusquedaBtn.addEventListener("click", function() {
+    buscarInput.value = "";
+    mostrarHistorialCompleto();
+});
+
+//funcion de filtro de historial
+function filtrarHistorial(term) {
+    const historial = JSON.parse(localStorage.getItem("historial")) || [];
+    historialLista.innerHTML = ""; 
+
+    historial.forEach(function(item, index) {
+        const fahrenheit = item.fahrenheit.toString();
+        const celsius = item.celsius.toString();
+
+        if (fahrenheit.includes(term) || celsius.includes(term)) {
+            mostrarHistorialItem(item, index);
+        }
+    });
+}
+
+//funcion que muestra todo historial
+function mostrarHistorialCompleto() {
+    const historial = JSON.parse(localStorage.getItem("historial")) || [];
+    historialLista.innerHTML = ""; 
+
+    historial.forEach(function(item, index) {
+        mostrarHistorialItem(item, index);
+    });
+}
 
 //decir temp max
 maxBtn.addEventListener("click", function() {
@@ -108,12 +151,6 @@ function mostrarHistorialItem(item, index) {
     historialItem.appendChild(deleteButton);
     historialLista.appendChild(historialItem);
 }
-
-// mostrar historial al cargar la pagina
-const historial = JSON.parse(localStorage.getItem("historial")) || [];
-historial.forEach((item, index) => {
-    mostrarHistorialItem(item, index);
-});
 
 // borrar historial al cargar la pagina
 localStorage.clear();

@@ -9,9 +9,10 @@
 
 <body>
 
+    <h1 id="saludo">¡Bienvenido al Convertidor de Temperatura!</h1>
     <button id="iniciarBtn" class="centro">Iniciar Convertidor</button>
     <div id="contenedor" style="display: none;" class="centro">
-        <p id="saludo">¡Bienvenido al convertidor de temperaturas!</p>
+        <p id="listo">¡Listo para converir!</p>
         <p id="instrucciones"></p>
         <input type="number" id="fahrenheitInput" placeholder="Ingresa el valor en grados Fahrenheit">
         <button id="convertirBtn">Convertir</button>
@@ -21,8 +22,15 @@
         <button id="maxBtn" style="display: none;">Valor Máximo</button>
         <button id="minBtn" style="display: none;">Valor Mínimo</button>
     </div>
-    <ul id="historialLista" class="centro"></ul>
+    
 
+    <div id="historial" style="display: none;">
+        <h2>Historial de Conversiones</h2>
+        <input type="text" id="buscarInput" placeholder="Buscar en el historial">
+        <button id="buscarBtn">Buscar</button>
+        <button id="limpiarBusquedaBtn">Limpiar búsqueda</button>
+        <ul id="historialLista" class="centro"></ul>
+    </div>
     
     <script src="index.js"></script>
 
