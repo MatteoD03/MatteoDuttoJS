@@ -65,6 +65,13 @@ convertirBtn.addEventListener("click", function() {
             mostrarElemento("historial");
         }
         fahrenheitInput.value ="";
+
+        Toastify({
+            text: "Conversión exitosa",
+            duration: 2000,
+            className: "tosti",
+        }).showToast();
+
     } else {
         resultado.textContent = "Por favor, ingresa un valor válido.";
         mostrarElemento("resultado");
@@ -117,18 +124,44 @@ function mostrarHistorialCompleto() {
     });
 }
 
+//promesa 
+function obtenerHistorial() {
+    return new Promise((resolve, reject) => {
+        const historial = JSON.parse(localStorage.getItem("historial")) || [];
+        resolve(historial);
+    });
+}
+
 //decir temp max
-maxBtn.addEventListener("click", function() {
-    const temperaturaMaxima = Math.max(...temperaturasConvertidas);
-    resultado.textContent = `La temperatura más alta registrada fue: ${temperaturaMaxima} grados Celsius.`;
-    mostrarElemento("resultado");
+maxBtn.addEventListener("click", function () {
+    obtenerHistorial().then((historial) => {
+        if (historial.length > 0) {
+            const temperaturaMaxima = Math.max(...historial.map(item => parseFloat(item.celsius)));
+            resultado.textContent = `La temperatura más alta registrada fue: ${temperaturaMaxima} grados Celsius.`;
+            mostrarElemento("resultado");
+        } else {
+            resultado.textContent = "No hay temperaturas registradas en el historial.";
+            mostrarElemento("resultado");
+        }
+    }).catch((error) => {
+        console.error("Error:", error);
+    });
 });
 
 //decir temp min
-minBtn.addEventListener("click", function() {
-    const temperaturaMinima = Math.min(...temperaturasConvertidas);
-    resultado.textContent = `La temperatura más baja registrada fue: ${temperaturaMinima} grados Celsius.`;
-    mostrarElemento("resultado");
+minBtn.addEventListener("click", function () {
+    obtenerHistorial().then((historial) => {
+        if (historial.length > 0) {
+            const temperaturaMinima = Math.min(...historial.map(item => parseFloat(item.celsius)));
+            resultado.textContent = `La temperatura más baja registrada fue: ${temperaturaMinima} grados Celsius.`;
+            mostrarElemento("resultado");
+        } else {
+            resultado.textContent = "No hay temperaturas registradas en el historial.";
+            mostrarElemento("resultado");
+        }
+    }).catch((error) => {
+        console.error("Error:", error);
+    });
 });
 
 // funcion para mostrar un elemento en el historial
@@ -139,13 +172,21 @@ function mostrarHistorialItem(item, index) {
     const deleteButton = document.createElement("button");
     deleteButton.textContent = "Eliminar";
     deleteButton.addEventListener("click", function() {
-        // borrar temp del historial
         const historial = JSON.parse(localStorage.getItem("historial")) || [];
         historial.splice(index, 1);
         localStorage.setItem("historial", JSON.stringify(historial));
+        historialLista.removeChild(historialItem); 
+        mostrarHistorialCompleto(); 
 
-        // borrar temp de la lista en la web
-        historialLista.removeChild(historialItem);
+        if (historial.length === 0) {
+            ocultarElemento("historial");
+        }
+
+        Toastify({
+            text: "Temperatura eliminada",
+            duration: 2000,
+            className: "tosti",
+        }).showToast();
     });
 
     historialItem.appendChild(deleteButton);

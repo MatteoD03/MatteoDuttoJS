@@ -61,7 +61,7 @@ input {
   margin-bottom: 1rem;
 }
 input:focus {
-  box-shadow: 0rem 0rem 0.6rem 0.1rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0rem 0rem 0.8rem 0.5rem rgba(0, 0, 0, 0.2);
 }
 
 p {
@@ -80,6 +80,12 @@ h1 {
 
 div {
   margin-bottom: 2rem;
+}
+
+.tosti {
+  background: rgb(180, 33, 33);
+  background: linear-gradient(0deg, rgb(180, 33, 33) 0%, rgb(99, 18, 18) 100%);
+  border-radius: 0.8rem;
 }
 
 /*# sourceMappingURL=styles.css.map */
